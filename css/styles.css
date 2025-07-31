@@ -3,4 +3,34 @@
     color: black;
 }
 
+.cores
+{
+    display: grid;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border: gray 2px solid;
+    border-radius: 5px;
+    margin-top: 5px;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+
+}
+
+.encontrar
+{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border: gray 2px solid;
+    border-radius: 5px;
+    margin-top: 2px;
+
+}
+
+.color:hover
+{
+    cursor: pointer;
+}
+
 
