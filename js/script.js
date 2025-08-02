@@ -14,6 +14,7 @@ const encontrar = document.getElementById('encontre');
 
 function comecarBotao() 
 {
+    document.getElementById("botao").disabled = true;
     pontuacao =0;
     tempo = 15;
     alert("Jogo começou! Tente clicar na cor correta!");
@@ -21,7 +22,7 @@ function comecarBotao()
     escutadoresDeEventos(); 
     randomColor();
     atualizarPontos();
-
+    
     if(tempo ==0)
     {
         alert(`"Você ficou com ${pontuacao} pontos!! Parabéns"`);
@@ -43,7 +44,11 @@ function escutadoresDeEventos()
             
             else 
             {
-                pontuacao-=50;
+                pontuacao-=25;
+                if (pontuacao < 0)
+                {
+                    pontuacao = 0;
+                }
                 atualizarPontos();
                 randomColor();
             }
@@ -98,14 +103,16 @@ function iniciarTemporizador()
         {
             clearInterval(intervaloTempo); // Para o tempo
             desabilitarCliques(); // Impede que o jogador continue jogando
-            alert(`⏱ Tempo esgotado! Sua pontuação: ${pontuacao}`);
+            alert(`Tempo esgotado! Sua pontuação: ${pontuacao}`);
+            document.getElementById("botao").disabled = false;
         }
     }, 1000); // Executa a cada 1 segundo
 }
 
 function desabilitarCliques() 
 {
-    cores.forEach(corDiv => {
+    cores.forEach(corDiv => 
+    {
         corDiv.onclick = null;
     });
 }
