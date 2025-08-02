@@ -1,7 +1,8 @@
 let pontuacao;
 let tempo;
 let intervaloTempo;
-const cores = [
+const cores = 
+[
     document.getElementById('cor1'),
     document.getElementById('cor2'),
     document.getElementById('cor3'),
@@ -17,9 +18,9 @@ function comecarBotao()
     tempo = 15;
     alert("Jogo começou! Tente clicar na cor correta!");
     iniciarTemporizador();
-    escutadoresDeEventos(); // Garante que os ouvintes sejam aplicados
+    escutadoresDeEventos(); 
     randomColor();
-    atualizarTempoEPontos();
+    atualizarPontos();
 
     if(tempo ==0)
     {
@@ -36,27 +37,28 @@ function escutadoresDeEventos()
             if (corDiv.style.backgroundColor === encontrar.style.backgroundColor) 
             {
                 pontuacao+=50;
-                atualizarTempoEPontos();
+                atualizarPontos();
                 randomColor();  
-                
             } 
             
             else 
             {
                 pontuacao-=50;
-                atualizarTempoEPontos();
+                atualizarPontos();
                 randomColor();
             }
         };
     });
 }
 
-function randomColor() {
+function randomColor() 
+{
     const vermelho = Math.floor(Math.random() * 256);
     const verde = Math.floor(Math.random() * 256);
     const azul = Math.floor(Math.random() * 256);
 
-    const coresRGB = [
+    const coresRGB = 
+    [
         `rgb(${vermelho}, ${azul}, ${verde})`,
         `rgb(${vermelho}, ${verde}, ${azul})`,
         `rgb(${verde}, ${azul}, ${vermelho})`,
@@ -66,7 +68,8 @@ function randomColor() {
     ];
 
     // Aplica as cores
-    cores.forEach((div, i) => {
+    cores.forEach((div, i) => 
+    {
         div.style.backgroundColor = coresRGB[i];
     });
 
@@ -75,21 +78,24 @@ function randomColor() {
     encontrar.style.backgroundColor = corSorteada;
 }
 
-function atualizarTempoEPontos() 
+function atualizarPontos() 
 {
     document.getElementById("pontos").textContent = ` ${pontuacao}`;
 }
 
-function iniciarTemporizador() {
+function iniciarTemporizador() 
+{
     tempo = 15;
 
-    intervaloTempo = setInterval(() => {
+    intervaloTempo = setInterval(() => 
+    {
         tempo--;
 
         // (Opcional) Exibir tempo na tela, se quiser
-        document.getElementById("tempo").textContent = `⏱ ${tempo}s`;
+        document.getElementById("tempo").textContent = ` ${tempo}s`;
 
-        if (tempo <= 0) {
+        if (tempo <= 0) 
+        {
             clearInterval(intervaloTempo); // Para o tempo
             desabilitarCliques(); // Impede que o jogador continue jogando
             alert(`⏱ Tempo esgotado! Sua pontuação: ${pontuacao}`);
@@ -97,7 +103,8 @@ function iniciarTemporizador() {
     }, 1000); // Executa a cada 1 segundo
 }
 
-function desabilitarCliques() {
+function desabilitarCliques() 
+{
     cores.forEach(corDiv => {
         corDiv.onclick = null;
     });
