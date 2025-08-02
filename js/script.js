@@ -1,3 +1,6 @@
+let pontuacao;
+let tempo;
+let intervaloTempo;
 const cores = [
     document.getElementById('cor1'),
     document.getElementById('cor2'),
@@ -8,20 +11,41 @@ const cores = [
 ];
 const encontrar = document.getElementById('encontre');
 
-function comecarBotao() {
+function comecarBotao() 
+{
+    pontuacao =0;
+    tempo = 15;
     alert("Jogo começou! Tente clicar na cor correta!");
+    iniciarTemporizador();
     escutadoresDeEventos(); // Garante que os ouvintes sejam aplicados
     randomColor();
+    atualizarTempoEPontos();
+
+    if(tempo ==0)
+    {
+        alert(`"Você ficou com ${pontuacao} pontos!! Parabéns"`);
+    }
 }
 
-function escutadoresDeEventos() {
-    cores.forEach(corDiv => {
-        corDiv.onclick = () => {
-            if (corDiv.style.backgroundColor === encontrar.style.backgroundColor) {
-                alert("Acertou! Próxima cor...");
+function escutadoresDeEventos() 
+{
+    cores.forEach(corDiv => 
+    {
+        corDiv.onclick = () => 
+        {
+            if (corDiv.style.backgroundColor === encontrar.style.backgroundColor) 
+            {
+                pontuacao+=50;
+                atualizarTempoEPontos();
+                randomColor();  
+                
+            } 
+            
+            else 
+            {
+                pontuacao-=50;
+                atualizarTempoEPontos();
                 randomColor();
-            } else {
-                alert("Cor errada! Você perdeu.");
             }
         };
     });
@@ -49,4 +73,32 @@ function randomColor() {
     // Sorteia a cor a ser adivinhada
     const corSorteada = coresRGB[Math.floor(Math.random() * coresRGB.length)];
     encontrar.style.backgroundColor = corSorteada;
+}
+
+function atualizarTempoEPontos() 
+{
+    document.getElementById("pontos").textContent = ` ${pontuacao}`;
+}
+
+function iniciarTemporizador() {
+    tempo = 15;
+
+    intervaloTempo = setInterval(() => {
+        tempo--;
+
+        // (Opcional) Exibir tempo na tela, se quiser
+        document.getElementById("tempo").textContent = `⏱ ${tempo}s`;
+
+        if (tempo <= 0) {
+            clearInterval(intervaloTempo); // Para o tempo
+            desabilitarCliques(); // Impede que o jogador continue jogando
+            alert(`⏱ Tempo esgotado! Sua pontuação: ${pontuacao}`);
+        }
+    }, 1000); // Executa a cada 1 segundo
+}
+
+function desabilitarCliques() {
+    cores.forEach(corDiv => {
+        corDiv.onclick = null;
+    });
 }

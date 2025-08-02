@@ -1,26 +1,58 @@
-.comecarBotao {
-    color: black;
-    padding: 10px 20px;
-    margin-top: 20px;
-    font-size: 16px;
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
-.grade-cores {
+/* Grade de 3 colunas x 2 linhas */
+.gradeCores {
     display: grid;
-    grid-template-columns: repeat(3, 100px); /* 3 colunas */
-    gap: 10px;
-    margin: 20px 0;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(2, 100px);
+    gap: 5px; /* Espaçamento entre quadrados */
+    margin-bottom: 20px;
 }
 
-.cores, .encontrar {
+/* Cada quadrado colorido */
+.cores {
     width: 100px;
     height: 100px;
     border: 2px solid gray;
     border-radius: 5px;
+    transition: transform 0.2s;
 }
 
 .cores:hover {
     cursor: pointer;
     transform: scale(1.05);
-    transition: 0.2s;
+}
+
+/* Cor alvo */
+.encontrar {
+    width: 100px;
+    height: 100px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Botão centralizado */
+.comecarBotao {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Pontuação visível em um quadradinho */
+#pontos {
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
