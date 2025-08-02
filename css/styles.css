@@ -1,36 +1,26 @@
-.comecarBotao
-{
+.comecarBotao {
     color: black;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
 }
 
-.cores
-{
+.grade-cores {
     display: grid;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    border: gray 2px solid;
-    border-radius: 5px;
-    margin-top: 5px;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 10px;
-
+    grid-template-columns: repeat(3, 100px); /* 3 colunas */
+    gap: 10px;
+    margin: 20px 0;
 }
 
-.encontrar
-{
+.cores, .encontrar {
     width: 100px;
     height: 100px;
-    background-color: red;
-    border: gray 2px solid;
+    border: 2px solid gray;
     border-radius: 5px;
-    margin-top: 2px;
-
 }
 
-.color:hover
-{
+.cores:hover {
     cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.2s;
 }
-
-
