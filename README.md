@@ -55,4 +55,4 @@ Também procurei um pouco sobre uso de algumas funções como .sort ou .push usa
 não consegui encontrar as que foram pesquisadas.
 
 <h3> Licença do projeto: </h3>
-Esse código foi licenciado pela [licença MIT](/LICENSE)
+Esse código foi licenciado pela [licença MIT](../LICENSE)
