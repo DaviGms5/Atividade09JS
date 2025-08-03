@@ -150,6 +150,3 @@ function mostrarRanking()
 
     alert(mensagem);
 }
-
-
-
