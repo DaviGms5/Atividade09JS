@@ -1,7 +1,8 @@
 let pontuacao;
 let tempo;
 let intervaloTempo;
-let ranking = [];
+let ranking = [{ nome: "Jogador VIP", pontuacao: 3000 }, 
+  { nome: "Perdedor", pontuacao: 0 }];
 let nome;
 const cores = 
 [
@@ -106,7 +107,19 @@ function iniciarTemporizador()
             ranking.push({ nome: nome, pontuacao: pontuacao });
             document.getElementById("botao").disabled = false;
             document.getElementById("botaoRanking").disabled = false;
-            ranking.sort((a, b) => b.pontuacao - a.pontuacao); // Ordena do maior para o menor
+            ranking.sort((a, b) => {
+            if (a.nome === "Perdedor") 
+            {
+                return 1;     
+            }
+
+            if (b.nome === "Perdedor") 
+            {
+                return -1;    
+            }
+
+            return b.pontuacao - a.pontuacao;
+            });     
         }
     }, 1000); // Executa a cada 1 segundo
 }
@@ -123,17 +136,6 @@ function desabilitarCliques()
 function mostrarRanking() 
 {
     let mensagem = " Ranking Top 5 Jogadores:\n\n";
-    const existeVIP = ranking.some(jogador => jogador.nome === "Jogador VIP" && jogador.pontuacao === 5000);
-    if (!existeVIP) 
-    {
-        ranking.push({ nome: "Jogador VIP", pontuacao: 3000 });
-    }
-
-    const existePerdedor = ranking.some(jogador => jogador.nome === "Perdedor" && jogador.pontuacao === 10);
-    if (!existePerdedor) 
-    {
-        ranking.push({ nome: "Perdedor", pontuacao: 0 });
-    }
 
     if (ranking.length === 0)
     {
