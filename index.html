@@ -8,9 +8,14 @@
     </head>
     <body>
         <div id="pontos"> 0</div>
-        <button id = "botao" class = "comecarBotao" onclick = "comecarBotao()"> Iniciar Jogo </button>
         <div id="tempo">15s</div>
 
+        <div class="linha-botoes">
+        <button id="botao" class="comecarBotao" onclick="comecarBotao()">Jogar</button>
+        <button id="botaoRanking" class="rankingBotao" onclick="mostrarRanking()">Ranking Top 5 Jogadores</button>
+        </div>
+
+        
         <div class = "gradeCores"> 
         <div class = "cores" id = "cor1"> </div>
         <div class = "cores" id = "cor2"> </div>
@@ -22,7 +27,6 @@
         <h1> Adivinhe a cor </h1>
 
         <div class = "encontrar" id = "encontre"></div>
-        
         <script src = "js/script.js"> </script>
     </body>
 </html>

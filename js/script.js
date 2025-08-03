@@ -1,6 +1,8 @@
 let pontuacao;
 let tempo;
 let intervaloTempo;
+let ranking = [];
+let nome;
 const cores = 
 [
     document.getElementById('cor1'),
@@ -14,19 +16,16 @@ const encontrar = document.getElementById('encontre');
 
 function comecarBotao() 
 {
+    nome = prompt("Digite seu nome: ");
     document.getElementById("botao").disabled = true;
+    document.getElementById("botaoRanking").disabled = true;
     pontuacao =0;
     tempo = 15;
-    alert("Jogo começou! Tente clicar na cor correta!");
+    alert(`"Atenção ${nome}, o jogo começou! Tente clicar nas cores corretas!"`);
     iniciarTemporizador();
     escutadoresDeEventos(); 
     randomColor();
     atualizarPontos();
-    
-    if(tempo ==0)
-    {
-        alert(`"Você ficou com ${pontuacao} pontos!! Parabéns"`);
-    }
 }
 
 function escutadoresDeEventos() 
@@ -103,8 +102,11 @@ function iniciarTemporizador()
         {
             clearInterval(intervaloTempo); // Para o tempo
             desabilitarCliques(); // Impede que o jogador continue jogando
-            alert(`Tempo esgotado! Sua pontuação: ${pontuacao}`);
+            alert(`Tempo esgotado ${nome}! Sua pontuação: ${pontuacao}`);
+            ranking.push({ nome: nome, pontuacao: pontuacao });
             document.getElementById("botao").disabled = false;
+            document.getElementById("botaoRanking").disabled = false;
+            ranking.sort((a, b) => b.pontuacao - a.pontuacao); // Ordena do maior para o menor
         }
     }, 1000); // Executa a cada 1 segundo
 }
@@ -116,3 +118,36 @@ function desabilitarCliques()
         corDiv.onclick = null;
     });
 }
+
+
+function mostrarRanking() 
+{
+    let mensagem = " Ranking Top 5 Jogadores:\n\n";
+    const existeVIP = ranking.some(jogador => jogador.nome === "Jogador VIP" && jogador.pontuacao === 5000);
+    if (!existeVIP) 
+    {
+        ranking.push({ nome: "Jogador VIP", pontuacao: 3000 });
+    }
+
+    const existePerdedor = ranking.some(jogador => jogador.nome === "Perdedor" && jogador.pontuacao === 10);
+    if (!existePerdedor) 
+    {
+        ranking.push({ nome: "Perdedor", pontuacao: 0 });
+    }
+
+    if (ranking.length === 0)
+    {
+        alert("O placar está vazio!!");
+        return;
+    }
+
+    ranking.slice(0, 5).forEach((jogador, index) => 
+    {
+        mensagem += `${index + 1}. ${jogador.nome} - ${jogador.pontuacao} pts\n`;
+    });
+
+    alert(mensagem);
+}
+
+
+
