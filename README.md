@@ -54,5 +54,5 @@ https://www.w3schools.com/jsref/jsref_slice_array.asp
 Também procurei um pouco sobre uso de algumas funções como .sort ou .push usados no código, porém
 não consegui encontrar as que foram pesquisadas.
 
-<h3> Licença do projeto: </h3>
+### Licença do projeto:
 Esse código foi licenciado pela [licença MIT](/LICENSE).
