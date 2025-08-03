@@ -97,7 +97,9 @@ function atualizarPontos()
 function iniciarTemporizador() 
 {
     tempo = 15;
-    intervaloTempo = setInterval(() => 
+    intervaloTempo = setInterval(() =>  
+    // Irá executar algo No intervalo dito lá embaixo de 1000 milissegundos
+    //  Nesse caso, ele apenas modifica o tempo e textcontent do tempo, e se o tempo acabar ai executa outras coisas
     {
         tempo--;
         document.getElementById("tempo").textContent = ` ${tempo}s`;
