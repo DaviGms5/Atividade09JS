@@ -10,12 +10,16 @@
         <div id="pontos"> 0</div>
         <div id="tempo">15s</div>
 
+        <!-- Uma div pai pra controlar os 2 botões quando for algo em comum e 2 botões pra ranking e pra começar o jogo
+         Durante o jogo, decidi desabilitar os botões para o usuário não clicar neles enquando o tempo contar-->
         <div class="linha-botoes">
         <button id="botao" class="comecarBotao" onclick="comecarBotao()">Jogar</button>
-        <button id="botaoRanking" class="rankingBotao" onclick="mostrarRanking()">Ranking Top 5 Jogadores</button>
+        <button id="botaoRanking" class="rankingBotao" onclick="mostrarRanking()">Ranking Top 10 Jogadores</button>
         </div>
 
-        
+        <!-- Monte de div pra colocar as cores e uma div pai pra abranger tudo e ficar mais fácil de mexer 
+         quando for mexer em tudo-->
+
         <div class = "gradeCores"> 
         <div class = "cores" id = "cor1"> </div>
         <div class = "cores" id = "cor2"> </div>

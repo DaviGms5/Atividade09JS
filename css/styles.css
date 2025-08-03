@@ -1,5 +1,6 @@
-/* Corpo centralizado e limpo */
-body {
+/* Centralizar o body */
+body 
+{
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -7,8 +8,9 @@ body {
     margin-top: 30px;
 }
 
-/* Pontuação isolada no topo */
-#pontos {
+/* Isolar os pontos no topo  */
+#pontos 
+{
     width: 120px;
     height: 40px;
     text-align: center;
@@ -21,7 +23,8 @@ body {
 }
 
 /* Linha com botões lado a lado */
-.linha-botoes {
+.linha-botoes 
+{
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -30,7 +33,8 @@ body {
 
 /* Botões uniformes e modernos */
 .comecarBotao,
-.rankingBotao {
+.rankingBotao 
+{
     padding: 10px 25px;
     font-size: 16px;
     border: 1px solid #999;
@@ -41,19 +45,22 @@ body {
 }
 
 .comecarBotao:hover,
-.rankingBotao:hover {
+.rankingBotao:hover 
+{
     background-color: #e0e0e0;
 }
 
 /* Tempo visualmente separado */
-#tempo {
+#tempo 
+{
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-/* Grade de 3 colunas x 2 linhas */
-.gradeCores {
+/* Criar a grade de 3 colunas x 2 linhas */
+.gradeCores 
+{
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(2, 100px);
@@ -61,8 +68,9 @@ body {
     margin-bottom: 30px;
 }
 
-/* Cada quadrado colorido */
-.cores {
+/* Cada quadrado colorido dos 6 criados */
+.cores 
+{
     width: 100px;
     height: 100px;
     border: 2px solid gray;
@@ -70,13 +78,15 @@ body {
     transition: transform 0.2s ease;
 }
 
-.cores:hover {
+.cores:hover 
+{
     cursor: pointer;
     transform: scale(1.05);
 }
 
 /* Cor alvo */
-.encontrar {
+.encontrar 
+{
     width: 100px;
     height: 100px;
     border: 2px solid gray;

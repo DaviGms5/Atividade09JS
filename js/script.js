@@ -1,6 +1,10 @@
 let pontuacao;
 let tempo;
 let intervaloTempo;
+// Esse VIP e Perdedor foi apenas pra deixar o jogo mais diversificado
+// Configurei para o perdedor sempre ser o último
+// Configurei para nunca ter pontuação negativa
+
 let ranking = [{ nome: "Jogador VIP", pontuacao: 3000 }, 
   { nome: "Perdedor", pontuacao: 0 }];
 let nome;
@@ -58,6 +62,7 @@ function escutadoresDeEventos()
 
 function randomColor() 
 {
+    // Usei as cores RGB a=para sempre variar as cores e não serem fixas
     const vermelho = Math.floor(Math.random() * 256);
     const verde = Math.floor(Math.random() * 256);
     const azul = Math.floor(Math.random() * 256);
@@ -72,56 +77,55 @@ function randomColor()
         `rgb(${azul}, ${verde}, ${vermelho})`
     ];
 
-    // Aplica as cores
+    // Aplicação das cores que serão randomizadas
     cores.forEach((div, i) => 
     {
         div.style.backgroundColor = coresRGB[i];
     });
 
-    // Sorteia a cor a ser adivinhada
+    // Sorteia a cor a ser adivinhada para o usuário 
     const corSorteada = coresRGB[Math.floor(Math.random() * coresRGB.length)];
     encontrar.style.backgroundColor = corSorteada;
 }
 
 function atualizarPontos() 
 {
+    // Atualizar o texto da tela conforme pontuação do usuário com textContent
     document.getElementById("pontos").textContent = ` ${pontuacao}`;
 }
 
 function iniciarTemporizador() 
 {
     tempo = 15;
-
     intervaloTempo = setInterval(() => 
     {
         tempo--;
-
-        // (Opcional) Exibir tempo na tela, se quiser
         document.getElementById("tempo").textContent = ` ${tempo}s`;
 
         if (tempo <= 0) 
         {
             clearInterval(intervaloTempo); // Para o tempo
             desabilitarCliques(); // Impede que o jogador continue jogando
-            alert(`Tempo esgotado ${nome}! Sua pontuação: ${pontuacao}`);
-            ranking.push({ nome: nome, pontuacao: pontuacao });
-            document.getElementById("botao").disabled = false;
-            document.getElementById("botaoRanking").disabled = false;
-            ranking.sort((a, b) => {
-            if (a.nome === "Perdedor") 
+            
+            alert(`Tempo esgotado ${nome}! Sua pontuação: ${pontuacao}`); //Mostra nome e pontuação
+            ranking.push({ nome: nome, pontuacao: pontuacao }); // Faz um push pra colocar no ranking
+            document.getElementById("botao").disabled = false; // Desativa o botão de iniciar jogo quando o jogo estiver rolando
+            document.getElementById("botaoRanking").disabled = false; // O mesmo pro botão do ranking
+            ranking.sort((a, b) => 
             {
-                return 1;     
-            }
+                if (a.nome === "Perdedor") 
+                {
+                    return 1;     
+                }
 
-            if (b.nome === "Perdedor") 
-            {
-                return -1;    
-            }
-
-            return b.pontuacao - a.pontuacao;
+                if (b.nome === "Perdedor") 
+                {
+                    return -1;    
+                }
+                return b.pontuacao - a.pontuacao;
             });     
         }
-    }, 1000); // Executa a cada 1 segundo
+    }, 1000); // Executa a cada 1000 milisegundos = 1 segundo
 }
 
 function desabilitarCliques() 
@@ -132,21 +136,20 @@ function desabilitarCliques()
     });
 }
 
-
 function mostrarRanking() 
 {
-    let mensagem = " Ranking Top 5 Jogadores:\n\n";
+    let mensagem = " Ranking Top 10 Jogadores:\n\n";
 
-    if (ranking.length === 0)
+    if (ranking.length === 0) // Teste se placar não tiver nada
     {
         alert("O placar está vazio!!");
         return;
     }
 
-    ranking.slice(0, 5).forEach((jogador, index) => 
+    ranking.slice(0, 10).forEach((jogador, index) => // Pega os 10 primeiros 
     {
         mensagem += `${index + 1}. ${jogador.nome} - ${jogador.pontuacao} pts\n`;
     });
 
-    alert(mensagem);
+    alert(mensagem); // Mostrar placar pelo alert
 }
